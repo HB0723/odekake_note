@@ -2,6 +2,8 @@
 
 <%= render @outing %>
 
+<%= render "schedule_items/list", outing: @outing %>
+
 <div>
   <%= link_to "編集する", edit_outing_path(@outing) %> |
   <%= link_to "一覧へ戻る", outings_path %>

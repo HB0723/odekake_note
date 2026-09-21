@@ -1,0 +1,12 @@
+<% content_for :title, "予定を追加" %>
+
+<h1>予定を追加</h1>
+<p>おでかけ: <%= @outing.title %></p>
+
+<%= render "form", outing: @outing, schedule_item: @schedule_item %>
+
+<br>
+
+<div>
+  <%= link_to "おでかけに戻る", @outing %>
+</div>

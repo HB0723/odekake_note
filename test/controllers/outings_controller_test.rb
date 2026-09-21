@@ -70,6 +70,19 @@ class OutingsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to outings_url
   end
 
+  test "詳細画面に予定が表示される" do
+    get outing_url(@outing)
+    assert_select "li", text: /京都駅に集合/
+  end
+
+  test "日程範囲外になった予定は「日程範囲外」にまとめて表示される" do
+    @outing.schedule_items.build(day_number: 3, title: "範囲外の予定").save!(validate: false)
+
+    get outing_url(@outing)
+    assert_select "h3", text: "日程範囲外"
+    assert_select "li", text: /範囲外の予定/
+  end
+
   test "他ユーザーのおでかけは表示できない（404）" do
     get outing_url(@other_outing)
     assert_response :not_found

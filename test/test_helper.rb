@@ -10,8 +10,8 @@ end
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors, with: :threads)
+    # SQLite + スレッド並列だと接続エラーになる環境があるため、並列実行はしない
+    parallelize(workers: 1)
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

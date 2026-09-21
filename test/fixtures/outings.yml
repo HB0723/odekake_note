@@ -6,6 +6,14 @@ one:
   memo: 早めに出発する
   user: one
 
+three:
+  title: 北海道旅行
+  start_on: 2026-10-01
+  end_on: 2026-10-03
+  place: 札幌
+  memo: 2泊3日
+  user: one
+
 two:
   title: 動物園
   start_on: 2026-10-20

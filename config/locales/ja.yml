@@ -2,7 +2,13 @@ ja:
   activerecord:
     models:
       outing: おでかけ
+      schedule_item: 予定
     attributes:
+      schedule_item:
+        day_number: 何日目
+        starts_at: 時刻
+        title: タイトル
+        memo: メモ
       outing:
         title: タイトル
         start_on: 開始日
@@ -15,3 +21,7 @@ ja:
           attributes:
             end_on:
               before_start_on: は開始日以降の日付にしてください
+        schedule_item:
+          attributes:
+            day_number:
+              out_of_range: は日程の範囲内で選んでください

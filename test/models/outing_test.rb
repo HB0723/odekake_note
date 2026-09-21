@@ -52,9 +52,28 @@ class OutingTest < ActiveSupport::TestCase
     assert_includes outing.errors.full_messages, "終了日は開始日以降の日付にしてください"
   end
 
+  test "day_count は終了日が空なら1日" do
+    assert_equal 1, build_outing.day_count
+  end
+
+  test "day_count は開始日と終了日が同じ日なら1日" do
+    assert_equal 1, build_outing(end_on: Date.new(2026, 11, 1)).day_count
+  end
+
+  test "day_count は開始日から終了日までの日数" do
+    assert_equal 3, build_outing(end_on: Date.new(2026, 11, 3)).day_count
+  end
+
+  test "date_for は n日目の日付を返す" do
+    outing = build_outing(end_on: Date.new(2026, 11, 3))
+    assert_equal Date.new(2026, 11, 1), outing.date_for(1)
+    assert_equal Date.new(2026, 11, 3), outing.date_for(3)
+  end
+
   test "ユーザーを削除するとおでかけも削除される" do
-    assert_difference("Outing.count", -1) do
-      users(:one).destroy
+    user = users(:one)
+    assert_difference("Outing.count", -user.outings.count) do
+      user.destroy
     end
   end
 end

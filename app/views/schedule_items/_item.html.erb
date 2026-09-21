@@ -1,0 +1,10 @@
+<li id="<%= dom_id item %>">
+  <strong><%= starts_at_label(item) %></strong>
+  <%= item.title %>
+  <% if item.memo.present? %>
+    <br><small><%= item.memo %></small>
+  <% end %>
+  <%= link_to "編集", edit_outing_schedule_item_path(outing, item) %>
+  <%= button_to "削除", outing_schedule_item_path(outing, item), method: :delete,
+        form: { style: "display: inline", data: { turbo_confirm: "この予定を削除しますか？" } } %>
+</li>

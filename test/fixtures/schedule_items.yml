@@ -1,0 +1,23 @@
+# one: ユーザーoneの日帰りおでかけ（outings :one）
+# two: ユーザーtwoのおでかけ（outings :two）
+# three: ユーザーoneの別のおでかけ・複数日（outings :three）の2日目
+one:
+  outing: one
+  day_number: 1
+  starts_at: "09:00:00"
+  title: 京都駅に集合
+  memo: 改札前
+
+two:
+  outing: two
+  day_number: 1
+  starts_at: "10:00:00"
+  title: 動物園に入園
+  memo:
+
+three:
+  outing: three
+  day_number: 2
+  starts_at: "10:00:00"
+  title: 美術館へ行く
+  memo:

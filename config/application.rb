@@ -23,6 +23,10 @@ module OdekakeNote
     #
     config.time_zone = "Tokyo"
     config.i18n.default_locale = :ja
+
+    # time 型（予定の時刻）はタイムゾーン変換しない。UTC に変換されると、
+    # 日本時間で9時前の時刻がDB上で後ろに並んでしまうため
+    config.active_record.time_zone_aware_types = [ :datetime ]
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

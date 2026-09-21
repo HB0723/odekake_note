@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :outings
+  resources :outings do
+    resources :schedule_items, except: [ :index, :show ]
+  end
   devise_for :users
   root "outings#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
