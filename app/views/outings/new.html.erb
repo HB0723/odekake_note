@@ -1,0 +1,11 @@
+<% content_for :title, "新しいおでかけ" %>
+
+<h1>新しいおでかけ</h1>
+
+<%= render "form", outing: @outing %>
+
+<br>
+
+<div>
+  <%= link_to "一覧へ戻る", outings_path %>
+</div>

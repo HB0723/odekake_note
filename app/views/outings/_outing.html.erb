@@ -1,0 +1,21 @@
+<div id="<%= dom_id outing %>">
+  <div>
+    <strong><%= Outing.human_attribute_name(:title) %>:</strong>
+    <%= outing.title %>
+  </div>
+
+  <div>
+    <strong>日程:</strong>
+    <%= outing_period(outing) %>
+  </div>
+
+  <div>
+    <strong><%= Outing.human_attribute_name(:place) %>:</strong>
+    <%= outing.place %>
+  </div>
+
+  <div>
+    <strong><%= Outing.human_attribute_name(:memo) %>:</strong>
+    <%= simple_format(h(outing.memo)) %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% content_for :title, "おでかけを編集" %>
+
+<h1>おでかけを編集</h1>
+
+<%= render "form", outing: @outing %>
+
+<br>
+
+<div>
+  <%= link_to "詳細へ戻る", @outing %> |
+  <%= link_to "一覧へ戻る", outings_path %>
+</div>

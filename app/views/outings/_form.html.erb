@@ -1,0 +1,43 @@
+<%= form_with(model: outing) do |form| %>
+  <% if outing.errors.any? %>
+    <div style="color: red">
+      <h2><%= outing.errors.count %>件のエラーがあるため保存できませんでした。</h2>
+
+      <ul>
+        <% outing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :start_on, style: "display: block" %>
+    <%= form.date_field :start_on %>
+  </div>
+
+  <div>
+    <%= form.label :end_on, style: "display: block" %>
+    <%= form.date_field :end_on %>
+    <small>空欄なら日帰りとして扱います</small>
+  </div>
+
+  <div>
+    <%= form.label :place, style: "display: block" %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div>
+    <%= form.label :memo, style: "display: block" %>
+    <%= form.textarea :memo %>
+  </div>
+
+  <div>
+    <%= form.submit "保存する" %>
+  </div>
+<% end %>

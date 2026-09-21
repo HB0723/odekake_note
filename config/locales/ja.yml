@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      outing: おでかけ
+    attributes:
+      outing:
+        title: タイトル
+        start_on: 開始日
+        end_on: 終了日
+        place: 場所
+        memo: メモ
+    errors:
+      models:
+        outing:
+          attributes:
+            end_on:
+              before_start_on: は開始日以降の日付にしてください

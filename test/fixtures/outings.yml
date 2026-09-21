@@ -1,0 +1,15 @@
+one:
+  title: 京都日帰り旅行
+  start_on: 2026-10-10
+  end_on:
+  place: 京都
+  memo: 早めに出発する
+  user: one
+
+two:
+  title: 動物園
+  start_on: 2026-10-20
+  end_on: 2026-10-21
+  place: 上野
+  memo: お弁当を持っていく
+  user: two
