@@ -26,7 +26,11 @@
   <body>
     <% if user_signed_in? %>
       <nav>
-        <%= current_user.email %>
+        <% if current_user.guest? %>
+          ゲストとしてログイン中
+        <% else %>
+          <%= current_user.email %>
+        <% end %>
         <%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
       </nav>
     <% end %>

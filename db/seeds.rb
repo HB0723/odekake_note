@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# ゲストユーザーとデモデータ（何度実行しても同じ状態になる）
+GuestDemoData.reset!(User.guest)
