@@ -1,10 +1,82 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Bootstrap（CDN で読み込み）の後に読み込まれるので、ここでの指定が優先される。
+ * 配色は「明るく親しみやすい暖色系」。白文字を載せる色はコントラスト比 4.5 以上にしている。
  */
+
+/* ---- 配色 ---- */
+:root {
+  --odekake-primary: #c8492f;        /* コーラルレッド（白文字 4.72） */
+  --odekake-primary-hover: #b03e27;
+  --odekake-primary-active: #9a3a1e;
+  --odekake-primary-rgb: 200, 73, 47;
+  --odekake-soft: #ffe8d6;           /* 淡いオレンジ（バッジ・強調の背景） */
+  --odekake-soft-border: #f6c3ae;
+
+  --bs-primary: var(--odekake-primary);
+  --bs-primary-rgb: var(--odekake-primary-rgb);
+  --bs-primary-bg-subtle: var(--odekake-soft);
+  --bs-primary-border-subtle: var(--odekake-soft-border);
+  --bs-primary-text-emphasis: var(--odekake-primary-active);
+
+  --bs-body-bg: #fff8f2;             /* 温かみのあるオフホワイト */
+  --bs-body-bg-rgb: 255, 248, 242;
+  --bs-link-color: #b8452b;
+  --bs-link-color-rgb: 184, 69, 43;
+  --bs-link-hover-color: #93361f;
+  --bs-link-hover-color-rgb: 147, 54, 31;
+  --bs-focus-ring-color: rgba(var(--odekake-primary-rgb), 0.25);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--odekake-primary);
+  --bs-btn-border-color: var(--odekake-primary);
+  --bs-btn-hover-bg: var(--odekake-primary-hover);
+  --bs-btn-hover-border-color: var(--odekake-primary-hover);
+  --bs-btn-active-bg: var(--odekake-primary-active);
+  --bs-btn-active-border-color: var(--odekake-primary-active);
+  --bs-btn-disabled-bg: var(--odekake-primary);
+  --bs-btn-disabled-border-color: var(--odekake-primary);
+  --bs-btn-focus-shadow-rgb: var(--odekake-primary-rgb);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--odekake-primary);
+  --bs-btn-border-color: var(--odekake-primary);
+  --bs-btn-hover-bg: var(--odekake-primary);
+  --bs-btn-hover-border-color: var(--odekake-primary);
+  --bs-btn-active-bg: var(--odekake-primary-hover);
+  --bs-btn-active-border-color: var(--odekake-primary-hover);
+  --bs-btn-focus-shadow-rgb: var(--odekake-primary-rgb);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--odekake-soft-border);
+  box-shadow: 0 0 0 0.25rem rgba(var(--odekake-primary-rgb), 0.25);
+}
+
+.form-check-input:checked {
+  background-color: var(--odekake-primary);
+  border-color: var(--odekake-primary);
+}
+
+.progress {
+  --bs-progress-bar-bg: var(--odekake-primary);
+}
+
+/* ---- レイアウト ---- */
+/* スマホ1列を基本に、PCでも読みやすい幅に抑える */
+.app-main {
+  max-width: 840px;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* button_to が作る form を、リンクやボタンと同じ行に並べる */
+form.button_to {
+  display: inline-block;
+}
