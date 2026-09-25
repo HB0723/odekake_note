@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :outings do
     resources :schedule_items, except: [ :index, :show ]
+    resources :packing_items, except: [ :index, :show ] do
+      member do
+        patch :toggle
+      end
+    end
   end
   devise_for :users
   root "outings#index"

@@ -1,6 +1,7 @@
 class Outing < ApplicationRecord
   belongs_to :user
   has_many :schedule_items, dependent: :destroy
+  has_many :packing_items, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :start_on, presence: true
@@ -18,6 +19,14 @@ class Outing < ApplicationRecord
   # n日目の日付
   def date_for(day_number)
     start_on + (day_number - 1)
+  end
+
+  def packing_items_count
+    packing_items.count
+  end
+
+  def packing_items_checked_count
+    packing_items.where(checked: true).count
   end
 
   private

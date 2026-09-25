@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  outing: one
+  title: 財布
+  checked: false
+
+two:
+  outing: two
+  title: 水筒
+  checked: false
+
+three:
+  outing: three
+  title: 上着
+  checked: false

@@ -1,0 +1,15 @@
+<h2>持ち物</h2>
+
+<%= render "packing_items/summary", outing: outing %>
+
+<% if outing.packing_items.blank? %>
+  <p>持ち物はまだありません。</p>
+<% else %>
+  <ul>
+    <% outing.packing_items.ordered.each do |packing_item| %>
+      <%= render "packing_items/item", outing: outing, packing_item: packing_item %>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><%= link_to "持ち物を追加", new_outing_packing_item_path(outing) %></p>

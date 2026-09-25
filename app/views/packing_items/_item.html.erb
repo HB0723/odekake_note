@@ -1,0 +1,17 @@
+<li id="<%= dom_id packing_item %>">
+  <%= form_with url: toggle_outing_packing_item_path(outing, packing_item), method: :patch,
+        style: "display: inline", data: { controller: "auto-submit" } do %>
+    <%= check_box_tag :checked, "1", packing_item.checked,
+          id: dom_id(packing_item, :checked),
+          data: { action: "change->auto-submit#submit" },
+          aria: { label: "#{packing_item.title}をチェック" } %>
+  <% end %>
+  <% if packing_item.checked? %>
+    <s><%= packing_item.title %></s>
+  <% else %>
+    <%= packing_item.title %>
+  <% end %>
+  <%= link_to "編集", edit_outing_packing_item_path(outing, packing_item) %>
+  <%= button_to "削除", outing_packing_item_path(outing, packing_item), method: :delete,
+        form: { style: "display: inline", data: { turbo_confirm: "この持ち物を削除しますか？" } } %>
+</li>

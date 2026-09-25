@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @packing_item, partial: "packing_items/item",
+      locals: { outing: @outing, packing_item: @packing_item } %>
+<%= turbo_stream.replace "packing_items_summary", partial: "packing_items/summary",
+      locals: { outing: @outing } %>

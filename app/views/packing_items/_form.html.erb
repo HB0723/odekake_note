@@ -1,0 +1,22 @@
+<%= form_with(model: [ outing, packing_item ]) do |form| %>
+  <% if packing_item.errors.any? %>
+    <div style="color: red">
+      <h2><%= packing_item.errors.count %>件のエラーがあるため保存できませんでした。</h2>
+
+      <ul>
+        <% packing_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.submit "保存する" %>
+  </div>
+<% end %>

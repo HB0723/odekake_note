@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_21_140717) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_23_104719) do
   create_table "outings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "end_on"
@@ -21,6 +21,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_140717) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_outings_on_user_id"
+  end
+
+  create_table "packing_items", force: :cascade do |t|
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.integer "outing_id", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["outing_id"], name: "index_packing_items_on_outing_id"
   end
 
   create_table "schedule_items", force: :cascade do |t|
@@ -48,5 +57,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_140717) do
   end
 
   add_foreign_key "outings", "users"
+  add_foreign_key "packing_items", "outings"
   add_foreign_key "schedule_items", "outings"
 end
