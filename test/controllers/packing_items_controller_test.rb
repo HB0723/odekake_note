@@ -27,9 +27,27 @@ class PackingItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal "text/vnd.turbo-stream.html", response.media_type
     assert @item.reload.checked
-    assert_turbo_stream action: "replace", target: dom_id(@item)
+    assert_turbo_stream action: "replace", target: dom_id(@item) do
+      assert_select "li##{dom_id(@item)} input[type=checkbox][checked]"
+      assert_select "label.text-decoration-line-through", text: @item.title
+    end
     assert_turbo_stream action: "replace", target: "packing_items_summary" do
-      assert_select "p", text: /1\/1 チェック済/
+      assert_select "#packing_items_summary p", text: /1\/1 チェック済/
+      assert_select "#packing_items_summary", text: /準備OK！/
+    end
+  end
+
+  test "チェックを外すと取り消し線が消え、残りの個数を表示する" do
+    @item.update!(checked: true)
+
+    patch toggle_outing_packing_item_url(@outing, @item), as: :turbo_stream
+
+    assert_turbo_stream action: "replace", target: dom_id(@item) do
+      assert_select "input[type=checkbox][checked]", count: 0
+      assert_select "label.text-decoration-line-through", count: 0
+    end
+    assert_turbo_stream action: "replace", target: "packing_items_summary" do
+      assert_select "#packing_items_summary", text: /あと1個/
     end
   end
 

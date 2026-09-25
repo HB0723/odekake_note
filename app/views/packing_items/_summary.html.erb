@@ -1,3 +1,20 @@
-<p id="packing_items_summary">
-  持ち物 <%= outing.packing_items_checked_count %>/<%= outing.packing_items_count %> チェック済
-</p>
+<%# チェック状態の切り替え時に Turbo Stream でこの要素ごと差し替える（id を変えないこと） %>
+<% total = outing.packing_items_count %>
+<% checked = outing.packing_items_checked_count %>
+<div id="packing_items_summary" class="px-3 pt-3 pb-2">
+  <div class="d-flex justify-content-between align-items-baseline small mb-1">
+    <p class="mb-0">持ち物 <%= checked %>/<%= total %> チェック済</p>
+    <% if total.positive? %>
+      <span class="<%= checked == total ? "fw-semibold text-primary-emphasis" : "text-body-secondary" %>">
+        <%= checked == total ? "準備OK！" : "あと#{total - checked}個" %>
+      </span>
+    <% end %>
+  </div>
+  <% if total.positive? %>
+    <% percent = checked * 100 / total %>
+    <div class="progress packing-progress" role="progressbar" aria-label="持ち物の準備状況"
+         aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar" style="width: <%= percent %>%"></div>
+    </div>
+  <% end %>
+</div>

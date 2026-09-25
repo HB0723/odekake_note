@@ -3,7 +3,11 @@ ja:
     models:
       outing: おでかけ
       schedule_item: 予定
+      packing_item: 持ち物
     attributes:
+      packing_item:
+        title: 持ち物名
+        checked: チェック
       schedule_item:
         day_number: 何日目
         starts_at: 時刻

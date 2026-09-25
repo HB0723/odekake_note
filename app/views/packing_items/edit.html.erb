@@ -1,12 +1,10 @@
 <% content_for :title, "持ち物を編集" %>
 
-<h1>持ち物を編集</h1>
-<p>おでかけ: <%= @outing.title %></p>
+<h1 class="h3 mb-1">持ち物を編集</h1>
+<p class="text-body-secondary mb-3"><%= @outing.title %></p>
 
-<%= render "form", outing: @outing, packing_item: @packing_item %>
-
-<br>
-
-<div>
-  <%= link_to "おでかけに戻る", @outing %>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <%= render "form", outing: @outing, packing_item: @packing_item %>
+  </div>
 </div>
