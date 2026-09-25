@@ -100,13 +100,20 @@ form.button_to {
 }
 
 /* ---- おでかけ一覧のカード ---- */
+/* 左端で貼り付けた付箋のイメージ：左に太いライン、左の角は小さく右の角は丸く、右下に紙の影 */
 .outing-card {
+  background-color: #fffdf8;
+  border: 1.5px solid #e8957e;
+  border-left: 5px solid var(--odekake-primary);
+  border-radius: 2px 12px 12px 2px;
+  box-shadow: 2px 3px 0 rgba(var(--odekake-primary-rgb), 0.12);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .outing-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0.5rem 1rem rgba(var(--odekake-primary-rgb), 0.15) !important;
+  /* ホバー中は紙の影の代わりに、ふんわりしたコーラルの影で浮き上がらせる */
+  box-shadow: 0 0.5rem 1rem rgba(var(--odekake-primary-rgb), 0.15);
 }
 
 /* ---- スケジュール ---- */
