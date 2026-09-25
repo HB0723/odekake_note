@@ -1,10 +1,19 @@
-<li id="<%= dom_id item %>">
-  <strong><%= starts_at_label(item) %></strong>
-  <%= item.title %>
-  <% if item.memo.present? %>
-    <br><small><%= item.memo %></small>
-  <% end %>
-  <%= link_to "編集", edit_outing_schedule_item_path(outing, item) %>
-  <%= button_to "削除", outing_schedule_item_path(outing, item), method: :delete,
-        form: { style: "display: inline", data: { turbo_confirm: "この予定を削除しますか？" } } %>
+<li id="<%= dom_id item %>" class="list-group-item d-flex align-items-start gap-3 py-3">
+  <span class="badge schedule-time <%= item.starts_at ? "bg-primary-subtle text-primary-emphasis" : "bg-secondary-subtle text-secondary-emphasis" %>">
+    <%= starts_at_label(item) %>
+  </span>
+
+  <div class="flex-grow-1 min-w-0">
+    <div class="fw-semibold text-break"><%= item.title %></div>
+    <% if item.memo.present? %>
+      <div class="small text-body-secondary text-break"><%= item.memo %></div>
+    <% end %>
+  </div>
+
+  <div class="d-flex flex-shrink-0 gap-1">
+    <%= link_to "編集", edit_outing_schedule_item_path(outing, item), class: "btn btn-sm btn-link link-secondary" %>
+    <%= button_to "削除", outing_schedule_item_path(outing, item), method: :delete,
+          class: "btn btn-sm btn-link link-danger",
+          form: { data: { turbo_confirm: "この予定を削除しますか？" } } %>
+  </div>
 </li>

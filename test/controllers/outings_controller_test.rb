@@ -45,6 +45,9 @@ class OutingsControllerTest < ActionDispatch::IntegrationTest
       post outings_url, params: { outing: { title: "", start_on: "2026-11-01" } }
     end
     assert_response :unprocessable_content
+    assert_select ".alert-danger", text: /保存できませんでした/
+    assert_select "input.is-invalid[name=?]", "outing[title]"
+    assert_select ".field_with_errors", count: 0
   end
 
   test "詳細画面を表示できる" do

@@ -1,21 +1,28 @@
-<div id="<%= dom_id outing %>">
-  <div>
-    <strong><%= Outing.human_attribute_name(:title) %>:</strong>
-    <%= outing.title %>
+<%# 詳細画面の見出しと基本情報 %>
+<section id="<%= dom_id outing %>" class="mb-4">
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0"><%= outing.title %></h1>
+    <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis"><%= outing_duration_label(outing) %></span>
   </div>
 
-  <div>
-    <strong>日程:</strong>
-    <%= outing_period(outing) %>
-  </div>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <dl class="row mb-0">
+        <dt class="col-3 col-sm-2">日程</dt>
+        <dd class="col-9 col-sm-10"><%= outing_period(outing) %></dd>
 
-  <div>
-    <strong><%= Outing.human_attribute_name(:place) %>:</strong>
-    <%= outing.place %>
-  </div>
+        <dt class="col-3 col-sm-2"><%= Outing.human_attribute_name(:place) %></dt>
+        <dd class="col-9 col-sm-10"><%= outing.place.presence || "未設定" %></dd>
 
-  <div>
-    <strong><%= Outing.human_attribute_name(:memo) %>:</strong>
-    <%= simple_format(h(outing.memo)) %>
+        <dt class="col-3 col-sm-2"><%= Outing.human_attribute_name(:memo) %></dt>
+        <dd class="col-9 col-sm-10 mb-0">
+          <% if outing.memo.present? %>
+            <%= simple_format(h(outing.memo), {}, wrapper_tag: "div") %>
+          <% else %>
+            <span class="text-body-secondary">なし</span>
+          <% end %>
+        </dd>
+      </dl>
+    </div>
   </div>
-</div>
+</section>

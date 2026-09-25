@@ -1,0 +1,11 @@
+<%# フォームのエラー表示（おでかけ・予定・持ち物で共通） %>
+<% if record.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <p class="fw-semibold mb-1"><%= record.errors.count %>件のエラーがあるため保存できませんでした。</p>
+    <ul class="mb-0 ps-3">
+      <% record.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

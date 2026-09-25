@@ -1,0 +1,20 @@
+<%# 一覧用のカード。カード全体がリンクになる（stretched-link） %>
+<div class="card h-100 border-0 shadow-sm outing-card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+      <h2 class="h5 card-title mb-0">
+        <%= link_to outing.title, outing, class: "stretched-link text-body text-decoration-none" %>
+      </h2>
+      <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis flex-shrink-0">
+        <%= outing_duration_label(outing) %>
+      </span>
+    </div>
+    <p class="card-text small text-body-secondary mb-1"><%= outing_period(outing) %></p>
+    <% if outing.place.present? %>
+      <p class="card-text small mb-1">場所: <%= outing.place %></p>
+    <% end %>
+    <% if outing.memo.present? %>
+      <p class="card-text small text-body-secondary text-truncate mb-0"><%= outing.memo %></p>
+    <% end %>
+  </div>
+</div>

@@ -2,37 +2,36 @@
 <% items_by_day = outing.schedule_items.chronological.group_by(&:day_number) %>
 <% multi_day = outing.day_count > 1 %>
 
-<h2>スケジュール</h2>
+<section class="card border-0 shadow-sm mb-4">
+  <div class="card-header bg-transparent d-flex justify-content-between align-items-center py-3">
+    <h2 class="h5 mb-0">スケジュール</h2>
+    <%= link_to "＋ 予定を追加", new_outing_schedule_item_path(outing), class: "btn btn-sm btn-outline-primary" %>
+  </div>
 
-<% (1..outing.day_count).each do |day| %>
-  <section>
+  <% (1..outing.day_count).each do |day| %>
     <% if multi_day %>
-      <h3><%= day_label(outing, day) %></h3>
+      <h3 class="h6 fw-bold text-primary-emphasis bg-primary-subtle px-3 py-2 mb-0"><%= day_label(outing, day) %></h3>
     <% end %>
 
     <% if items_by_day[day].blank? %>
-      <p>予定はまだありません。</p>
+      <p class="text-body-secondary small px-3 py-3 mb-0">予定はまだありません。</p>
     <% else %>
-      <ul>
+      <ul class="list-group list-group-flush">
         <% items_by_day[day].each do |item| %>
           <%= render "schedule_items/item", outing: outing, item: item %>
         <% end %>
       </ul>
     <% end %>
-  </section>
-<% end %>
+  <% end %>
 
-<% out_of_range = items_by_day.select { |day, _| day > outing.day_count }.values.flatten %>
-<% if out_of_range.any? %>
-  <section>
-    <h3>日程範囲外</h3>
-    <p>おでかけの日程を短くしたため、範囲外になっている予定です。編集して日を選び直してください。</p>
-    <ul>
+  <% out_of_range = items_by_day.select { |day, _| day > outing.day_count }.values.flatten %>
+  <% if out_of_range.any? %>
+    <h3 class="h6 fw-bold text-warning-emphasis bg-warning-subtle px-3 py-2 mb-0">日程範囲外</h3>
+    <p class="small text-body-secondary px-3 pt-2 mb-0">おでかけの日程を短くしたため、範囲外になっている予定です。編集して日を選び直してください。</p>
+    <ul class="list-group list-group-flush">
       <% out_of_range.each do |item| %>
         <%= render "schedule_items/item", outing: outing, item: item %>
       <% end %>
     </ul>
-  </section>
-<% end %>
-
-<p><%= link_to "予定を追加", new_outing_schedule_item_path(outing) %></p>
+  <% end %>
+</section>

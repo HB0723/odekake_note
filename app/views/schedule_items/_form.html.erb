@@ -1,41 +1,31 @@
 <%= form_with(model: [ outing, schedule_item ]) do |form| %>
-  <% if schedule_item.errors.any? %>
-    <div style="color: red">
-      <h2><%= schedule_item.errors.count %>件のエラーがあるため保存できませんでした。</h2>
+  <%= render "shared/form_errors", record: schedule_item %>
 
-      <ul>
-        <% schedule_item.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <div class="row g-3 mb-3">
+    <%# 日帰りのときは1日目固定なので選択欄を出さない %>
+    <% if outing.day_count > 1 %>
+      <div class="col-sm-6">
+        <%= form.label :day_number, class: "form-label" %>
+        <%= form.select :day_number, day_options(outing), {}, class: "form-select" %>
+      </div>
+    <% end %>
+
+    <div class="col-sm-6">
+      <%= form.label :starts_at, class: "form-label" %>
+      <%= form.time_field :starts_at, class: "form-control", aria: { describedby: "starts_at_help" } %>
+      <div id="starts_at_help" class="form-text">空欄なら時間未定として、その日の最後に表示します</div>
     </div>
-  <% end %>
-
-  <%# 日帰りのときは1日目固定なので選択欄を出さない %>
-  <% if outing.day_count > 1 %>
-    <div>
-      <%= form.label :day_number, style: "display: block" %>
-      <%= form.select :day_number, day_options(outing) %>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :starts_at, style: "display: block" %>
-    <%= form.time_field :starts_at %>
-    <small>空欄なら時間未定として、その日の最後に表示します</small>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "例: 鶴岡八幡宮" %>
   </div>
 
-  <div>
-    <%= form.label :memo, style: "display: block" %>
-    <%= form.textarea :memo %>
+  <div class="mb-4">
+    <%= form.label :memo, class: "form-label" %>
+    <%= form.textarea :memo, class: "form-control", rows: 3 %>
   </div>
 
-  <div>
-    <%= form.submit "保存する" %>
-  </div>
+  <%= render "shared/form_actions", form: form, cancel_path: outing_path(outing) %>
 <% end %>

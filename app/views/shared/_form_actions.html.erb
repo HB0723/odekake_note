@@ -1,0 +1,5 @@
+<%# 保存ボタンとキャンセル。スマホでは保存ボタンを横幅いっぱいにして押しやすくする %>
+<div class="d-grid gap-2 d-sm-flex">
+  <%= form.submit "保存する", class: "btn btn-primary px-4" %>
+  <%= link_to "キャンセル", cancel_path, class: "btn btn-outline-secondary" %>
+</div>

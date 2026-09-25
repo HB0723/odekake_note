@@ -1,12 +1,9 @@
 <% content_for :title, "おでかけを編集" %>
 
-<h1>おでかけを編集</h1>
+<h1 class="h3 mb-3">おでかけを編集</h1>
 
-<%= render "form", outing: @outing %>
-
-<br>
-
-<div>
-  <%= link_to "詳細へ戻る", @outing %> |
-  <%= link_to "一覧へ戻る", outings_path %>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <%= render "form", outing: @outing, cancel_path: outing_path(@outing) %>
+  </div>
 </div>

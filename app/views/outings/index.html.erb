@@ -1,18 +1,24 @@
 <% content_for :title, "おでかけ一覧" %>
 
-<h1>おでかけ一覧</h1>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+  <h1 class="h3 mb-0">おでかけ一覧</h1>
+  <%= link_to "＋ 新しいおでかけ", new_outing_path, class: "btn btn-primary" %>
+</div>
 
 <div id="outings">
   <% if @outings.empty? %>
-    <p>まだおでかけがありません。「新しいおでかけ」から登録してみましょう。</p>
-  <% end %>
-
-  <% @outings.each do |outing| %>
-    <%= render outing %>
-    <p>
-      <%= link_to "詳細を見る", outing %>
-    </p>
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center text-body-secondary py-5">
+        まだおでかけがありません。「新しいおでかけ」から登録してみましょう。
+      </div>
+    </div>
+  <% else %>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+      <% @outings.each do |outing| %>
+        <div class="col">
+          <%= render "outings/card", outing: outing %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "新しいおでかけ", new_outing_path %>
