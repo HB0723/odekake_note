@@ -57,7 +57,7 @@ end
 
 group :production do
   # Use PostgreSQL on Render
-  gem "pg", "~> 1.5"
+  gem "pg", "~> 1.7"
 end
 
 group :test do
